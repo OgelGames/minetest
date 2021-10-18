@@ -96,6 +96,9 @@ private:
 	// get_node_def(nodename)
 	static int l_get_node_def(lua_State *L);
 
+	// get_node_list()
+	static int l_get_node_colors(lua_State *L);
+
 	// get_privilege_list()
 	static int l_get_privilege_list(lua_State *L);
 

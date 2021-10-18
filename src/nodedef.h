@@ -555,6 +555,11 @@ public:
 	 */
 	const ContentFeatures& get(const std::string &name) const;
 
+	const std::vector<ContentFeatures> &getContentList() const
+	{
+		return m_content_features;
+	}
+
 	/*!
 	 * Returns the content ID for the given name.
 	 * @param name a node name

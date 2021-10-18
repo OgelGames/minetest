@@ -382,6 +382,25 @@ int ModApiClient::l_get_node_def(lua_State *L)
 	return 1;
 }
 
+// get_node_colors()
+int ModApiClient::l_get_node_colors(lua_State *L)
+{
+	IGameDef *gdef = getGameDef(L);
+	assert(gdef);
+
+	const NodeDefManager *ndef = gdef->ndef();
+	assert(ndef);
+
+	lua_newtable(L);
+
+	for (const ContentFeatures &f : ndef->getContentList()) {
+		push_ARGB8(L, f.minimap_color);
+		lua_setfield(L, -2, f.name.c_str());
+	}
+
+	return 1;
+}
+
 // get_privilege_list()
 int ModApiClient::l_get_privilege_list(lua_State *L)
 {
@@ -437,6 +456,7 @@ void ModApiClient::Initialize(lua_State *L, int top)
 	API_FCT(get_server_info);
 	API_FCT(get_item_def);
 	API_FCT(get_node_def);
+	API_FCT(get_node_colors);
 	API_FCT(get_privilege_list);
 	API_FCT(get_builtin_path);
 	API_FCT(get_language);
